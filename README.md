@@ -1,0 +1,139 @@
+# Gemini CLI Extension - Neo4j
+
+> [!NOTE]
+> This extension is currently in beta (pre-v1.0), and may see breaking changes until the first stable release (v1.0).
+
+This Gemini CLI extension provides a set of tools to interact with [Neo4j](https://neo4j.com/docs/) instances. It allows you to manage your databases, execute cypher queries, and explore schemas directly from the [Gemini CLI](https://google-gemini.github.io/gemini-cli/), using natural language prompts.
+
+Learn more about [Gemini CLI Extensions](https://github.com/google-gemini/gemini-cli/blob/main/docs/extensions/index.md).
+> [!IMPORTANT]
+> **We Want Your Feedback!**
+> Please share your thoughts with us by filling out our feedback [form][form]. 
+> Your input is invaluable and helps us improve the project for everyone.
+
+[form]: https://docs.google.com/forms/d/e/1FAIpQLSfEGmLR46iipyNTgwTmIDJqzkAwDPXxbocpXpUbHXydiN1RTw/viewform?usp=pp_url&entry.157487=neo4j
+
+## Why Use the Neo4j Extension?
+
+* **Natural Language Management:** Stop wrestling with complex commands. Explore schemas and query data using cyphers by describing what you want in plain English.
+* **Seamless Workflow:** As a Google-developed extension, it integrates seamlessly into the Gemini CLI environment. No need to constantly switch contexts for common database tasks.
+* **Code Generation:** Accelerate development by asking Gemini to generate data classes and other code snippets based on your nodes and entities.
+
+
+## Prerequisites
+
+Before you begin, ensure you have the following:
+
+* [Gemini CLI](https://github.com/google-gemini/gemini-cli) installed with version **+v0.6.0**.
+* Setup Gemini CLI [Authentication](https://github.com/google-gemini/gemini-cli/tree/main?tab=readme-ov-file#-authentication-options).
+* A running Neo4j instance.
+* A user with database-level permissions to execute queries.
+
+## Getting Started
+
+### Installation
+
+To install the extension, use the command:
+
+```bash
+gemini extensions install https://github.com/gemini-cli-extensions/neo4j
+```
+
+### Configuration
+
+Set the following environment variables before starting the Gemini CLI. These variables can be loaded from a `.env` file.
+
+```bash
+export NEO4J_URI="<your-neo4j-host>"
+export NEO4J_USER="<your-database-user>"
+export NEO4J_PASSWORD="<your-database-password>"
+```
+
+### Start Gemini CLI
+
+To start the Gemini CLI, use the following command:
+
+```bash
+gemini
+```
+
+> [!WARNING]
+> **Changing Instance & Database Connections**
+> Currently, the database connection must be configured before starting the Gemini CLI and can not be changed during a session.
+> To save and resume conversation history use command: `/chat save <tag>` and `/chat resume <tag>`.
+
+## Usage Examples
+
+Interact with Neo4j using natural language right from your IDE:
+
+* **Explore Schema and Data:**
+  * "Show me all node labels in the database."
+  * "What properties does the 'Product' node have?"
+  * "How many orders were placed in the last 30 days, and what were the top 5 most purchased items?"
+  * "Show me the relationship types in the graph."
+
+* **Generate Code:**
+  * "Generate a Python dataclass to represent the 'Customer' node."
+
+## Supported Tools
+* `list_tables`: lists schema information for all or specified node labels and relationships in a Neo4j database.
+* `execute_cypher`: executes a Cypher query against a Neo4j database.
+
+## Local Development
+
+If you want to develop or modify this extension locally, you can build and install it from your local repository:
+
+1. **Read the required toolbox version:**
+```bash
+   VERSION=$(cat toolbox_version.txt)
+```
+
+2. **Download the GenAI Toolbox binary for your platform:**
+   
+   For Linux:
+```bash
+   curl -L -o toolbox https://storage.googleapis.com/genai-toolbox/v$VERSION/linux/amd64/toolbox
+```
+   
+   For macOS:
+```bash
+   curl -L -o toolbox https://storage.googleapis.com/genai-toolbox/v$VERSION/darwin/amd64/toolbox
+```
+
+3. **Make the binary executable:**
+```bash
+   chmod +x toolbox
+```
+
+4. **Install the local extension:**
+```bash
+   gemini extensions install .
+```
+
+5. **Link for live updates (optional):**
+```bash
+   gemini extensions link .
+```
+   
+   This keeps your local source code in sync with the installed extension as you make changes.
+
+> [!TIP]
+> The `toolbox_version.txt` file specifies which version of the GenAI Toolbox binary is compatible with this extension. Make sure to use the correct version for your development.
+
+## Additional Extensions
+Find additional extensions to support your entire software development lifecycle at [github.com/gemini-cli-extensions](https://github.com/gemini-cli-extensions), including:
+* [Cloud SQL for Neo4j extension](https://github.com/gemini-cli-extensions/cloud-sql-sqlserver)
+* and more!
+
+You can develop a new extension, as long as 
+
+## Troubleshooting
+
+Use `gemini --debug` to enable debugging.
+
+Common issues:
+
+* "failed to find default credentials: google: could not find default credentials.": Ensure [Application Default Credentials](https://cloud.google.com/docs/authentication/gcloud) are available in your environment. See [Set up Application Default Credentials](https://cloud.google.com/docs/authentication/external/set-up-adc) for more information.
+* "✖ Error during discovery for server: MCP error -32000: Connection closed": The database connection has not been established. Ensure your configuration is set via environment variables.
+* "✖ MCP ERROR: Error: spawn /Users/USER/.gemini/extensions/neo4j/toolbox ENOENT": The Toolbox binary did not download correctly. Ensure you are using Gemini CLI v0.6.0+.
+* "cannot execute binary file": The Toolbox binary did not download correctly. Ensure the correct binary for your OS/Architecture has been downloaded. See [Installing the server](https://googleapis.github.io/genai-toolbox/getting-started/introduction/#installing-the-server) for more information.

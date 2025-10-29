@@ -1,0 +1,22 @@
+{
+  "name": "neo4j",
+  "version": "0.1.0",
+  "description": "Connect to Neo4j instance",
+  "mcpServers": {
+    "neo4j_server": {
+      "command": "${extensionPath}${/}toolbox",
+      "args": [
+        "--prebuilt",
+        "neo4j",
+        "--stdio"
+      ],
+      "env": {
+        "NEO4J_URI": "${NEO4J_URI}",
+        "NEO4J_USER": "${NEO4J_USER}",
+        "NEO4J_PASSWORD": "${NEO4J_PASSWORD}",
+        "NEO4J_DATABASE": "${NEO4J_DATABASE}"
+        }
+    }
+  },
+  "contextFileName": "NEO4J.md"
+}
