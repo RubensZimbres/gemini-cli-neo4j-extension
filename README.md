@@ -121,8 +121,7 @@ If you want to develop or modify this extension locally, you can build and insta
 > The `toolbox_version.txt` file specifies which version of the GenAI Toolbox binary is compatible with this extension. Make sure to use the correct version for your development.
 
 ## Additional Extensions
-Find additional extensions to support your entire software development lifecycle at [github.com/gemini-cli-extensions](https://github.com/gemini-cli-extensions), including:
-* [Cloud SQL for Neo4j extension](https://github.com/gemini-cli-extensions/cloud-sql-sqlserver)
+Find additional extensions to support your entire software development lifecycle at [github.com/gemini-cli-extensions](https://github.com/gemini-cli-extensions)
 * and more!
 
 You can develop a new extension, as long as 

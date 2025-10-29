@@ -114,7 +114,7 @@ The process is handled by the [`mirror-changelog.yml`](.github/workflows/mirror-
    the PR body.
 3. **Filtering:** These release notes are filtered to include only changes
    relevant to this extension. The relevance is determined by a keyword (e.g.,
-   `mssql`), passed as an environment variable in the workflow file.
+   `neo4j`), passed as an environment variable in the workflow file.
 4. **Changelog Injection:** The script formats the filtered entries as
    conventional commits and injects them into the PR body within a
    `BEGIN_COMMIT_OVERRIDE` block.
